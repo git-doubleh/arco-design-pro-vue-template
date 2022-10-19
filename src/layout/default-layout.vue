@@ -35,7 +35,10 @@
         <a-layout class="layout-content" :style="paddingStyle">
           <TabBar v-if="appStore.tabBar" />
           <a-layout-content>
-            <PageLayout />
+            <div class="page-content">
+              <Breadcrumb />
+              <PageLayout />
+            </div>
           </a-layout-content>
           <Footer v-if="footer" />
         </a-layout>
@@ -169,5 +172,8 @@
     overflow-y: hidden;
     background-color: var(--color-fill-2);
     transition: padding 0.2s cubic-bezier(0.34, 0.69, 0.1, 1);
+  }
+  .page-content {
+    padding: 0 20px 20px 20px;
   }
 </style>

@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-    <Breadcrumb :items="['menu.list', 'menu.list.searchTable']" />
     <a-card class="general-card" :title="$t('menu.list.searchTable')">
       <FilterForm :options="filterOptions" @on-query="search"></FilterForm>
 
@@ -32,7 +31,7 @@
 </template>
 
 <script lang="ts" setup>
-  import { ref, reactive } from "vue"
+  import { ref, reactive, computed } from "vue"
   import { useI18n } from "vue-i18n"
   import useLoading from "@/hooks/loading"
   import { queryPolicyList, PolicyRecord, PolicyParams } from "@/api/list"
@@ -81,7 +80,8 @@
       pickerParams: ["createdTimeBegin", "createdTimeEnd"]
     }
   ])
-  const columns = [
+  // 使用计算属性定义 保证国际化支持
+  const columns = computed(() => [
     {
       title: t("searchTable.columns.number"),
       dataIndex: "number"
@@ -92,6 +92,7 @@
     },
     {
       title: t("searchTable.columns.filterType"),
+      dataIndex: "filterType",
       slotName: "filterType"
     },
     {
@@ -100,6 +101,7 @@
     },
     {
       title: t("searchTable.columns.status"),
+      dataIndex: "status",
       slotName: "status"
     },
     {
@@ -108,9 +110,10 @@
     },
     {
       title: t("searchTable.columns.operations"),
+      dataIndex: "operations",
       slotName: "operations"
     }
-  ]
+  ])
   const pagination = reactive({
     ...basePagination
   })
@@ -154,10 +157,6 @@
 </script>
 
 <style scoped lang="less">
-  .container {
-    padding: 0 20px 20px 20px;
-  }
-
   :deep(.arco-table-th) {
     &:last-child {
       .arco-table-th-item-title {
