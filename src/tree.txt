@@ -1,0 +1,205 @@
+卷 项目 的文件夹 PATH 列表
+卷序列号为 50F7-819B
+E:.
+│  App.vue
+│  env.d.ts
+│  main.ts
+│  tree.txt
+│  
+├─api
+│      interceptor.ts
+│      list.ts
+│      user.ts
+│      
+├─assets
+│  │  logo.svg
+│  │  world.json
+│  │  
+│  ├─images
+│  │      login-banner.png
+│  │      
+│  └─style
+│          breakpoint.less
+│          global.less
+│          
+├─components
+│  │  index.ts
+│  │  
+│  ├─breadcrumb
+│  │      index.vue
+│  │      
+│  ├─chart
+│  │      index.vue
+│  │      
+│  ├─FilterForm
+│  │      index.vue
+│  │      type.ts
+│  │      
+│  ├─footer
+│  │      index.vue
+│  │      
+│  ├─global-setting
+│  │      block.vue
+│  │      form-wrapper.vue
+│  │      index.vue
+│  │      
+│  ├─menu
+│  │      index.vue
+│  │      use-menu-tree.ts
+│  │      
+│  ├─message-box
+│  │  │  index.vue
+│  │  │  list.vue
+│  │  │  
+│  │  └─locale
+│  │          en-US.ts
+│  │          zh-CN.ts
+│  │          
+│  ├─navbar
+│  │      index.vue
+│  │      
+│  └─tab-bar
+│          index.vue
+│          readme.md
+│          tab-item.vue
+│          
+├─config
+│      settings.json
+│      
+├─directive
+│  │  index.ts
+│  │  
+│  └─permission
+│          index.ts
+│          
+├─hooks
+│      chart-option.ts
+│      loading.ts
+│      locale.ts
+│      permission.ts
+│      request.ts
+│      responsive.ts
+│      themes.ts
+│      user.ts
+│      visible.ts
+│      
+├─layout
+│      default-layout.vue
+│      page-layout.vue
+│      
+├─locale
+│  │  en-US.ts
+│  │  index.ts
+│  │  zh-CN.ts
+│  │  
+│  ├─en-US
+│  │      settings.ts
+│  │      
+│  └─zh-CN
+│          settings.ts
+│          
+├─mock
+│      index.ts
+│      message-box.ts
+│      user.ts
+│      
+├─router
+│  │  constants.ts
+│  │  index.ts
+│  │  typings.d.ts
+│  │  
+│  ├─app-menus
+│  │      index.ts
+│  │      
+│  ├─guard
+│  │      index.ts
+│  │      permission.ts
+│  │      userLoginInfo.ts
+│  │      
+│  └─routes
+│      │  base.ts
+│      │  index.ts
+│      │  types.ts
+│      │  
+│      └─modules
+│              list.ts
+│              
+├─store
+│  │  index.ts
+│  │  
+│  └─modules
+│      ├─app
+│      │      index.ts
+│      │      types.ts
+│      │      
+│      ├─tab-bar
+│      │      index.ts
+│      │      types.ts
+│      │      
+│      └─user
+│              index.ts
+│              types.ts
+│              
+├─types
+│      echarts.ts
+│      global.ts
+│      mock.ts
+│      
+├─utils
+│      auth.ts
+│      env.ts
+│      event.ts
+│      index.ts
+│      is.ts
+│      monitor.ts
+│      route-listener.ts
+│      setup-mock.ts
+│      
+└─views
+    ├─exception
+    │  ├─403
+    │  │  │  index.vue
+    │  │  │  
+    │  │  └─locale
+    │  │          en-US.ts
+    │  │          zh-CN.ts
+    │  │          
+    │  ├─404
+    │  │  │  index.vue
+    │  │  │  
+    │  │  └─locale
+    │  │          en-US.ts
+    │  │          zh-CN.ts
+    │  │          
+    │  └─500
+    │      │  index.vue
+    │      │  
+    │      └─locale
+    │              en-US.ts
+    │              zh-CN.ts
+    │              
+    ├─list
+    │  └─search-table
+    │      │  index.vue
+    │      │  mock.ts
+    │      │  
+    │      └─locale
+    │              en-US.ts
+    │              zh-CN.ts
+    │              
+    ├─login
+    │  │  index.vue
+    │  │  
+    │  ├─components
+    │  │      login-form.vue
+    │  │      
+    │  └─locale
+    │          en-US.ts
+    │          zh-CN.ts
+    │          
+    ├─not-found
+    │      index.vue
+    │      
+    └─redirect
+            index.vue
+            

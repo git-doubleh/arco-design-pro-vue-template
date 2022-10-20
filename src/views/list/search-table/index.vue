@@ -1,17 +1,9 @@
 <template>
   <div class="container">
     <a-card class="general-card" :title="$t('menu.list.searchTable')">
-      <FilterForm :options="filterOptions" @on-query="search"></FilterForm>
+      <filter-form :options="filterOptions" @on-query="search"></filter-form>
 
-      <a-table
-        :bordered="false"
-        :pagination="pagination"
-        row-key="id"
-        :loading="loading"
-        :data="renderData"
-        :columns="columns"
-        @page-change="onPageChange"
-      >
+      <a-table :columns="columns" v-bind="propsRes" v-on="propsEvent">
         <template #filterType="{ record }">
           {{ $t(`searchTable.form.filterType.${record.filterType}`) }}
         </template>
@@ -31,31 +23,17 @@
 </template>
 
 <script lang="ts" setup>
-  import { ref, reactive, computed } from "vue"
+  // @ts-nocheck
+  import { reactive, computed } from "vue"
   import { useI18n } from "vue-i18n"
-  import useLoading from "@/hooks/loading"
-  import { queryPolicyList, PolicyRecord, PolicyParams } from "@/api/list"
-  import FilterForm from "@/components/FilterForm/index.vue"
+  import { queryPolicyList } from "@/api/list"
+  import FilterForm from "@/components/filter-form/index.vue"
+  import useTableProps from "@/hooks/table"
 
-  const generateFormModel = () => {
-    return {
-      number: "",
-      name: "",
-      contentType: "",
-      filterType: "",
-      createdTime: [],
-      status: ""
-    }
-  }
-  const { loading, setLoading } = useLoading(true)
+  const { propsRes, propsEvent, loadList, setLoadListParams } =
+    useTableProps(queryPolicyList)
+
   const { t } = useI18n()
-  const renderData = ref<PolicyRecord[]>([])
-  const formModel = ref(generateFormModel())
-  const basePagination = {
-    current: 1,
-    pageSize: 20,
-    total: 0
-  }
   const filterOptions = reactive([
     {
       type: "input",
@@ -114,40 +92,16 @@
       slotName: "operations"
     }
   ])
-  const pagination = reactive({
-    ...basePagination
-  })
-  const fetchData = async (
-    params: PolicyParams = { current: 1, pageSize: 20 }
-  ) => {
-    setLoading(true)
-    try {
-      const { data } = await queryPolicyList(params)
-      renderData.value = data.list
-      pagination.current = params.current
-      pagination.total = data.total
-    } catch (err) {
-      // you can report use errorHandler or other
-    } finally {
-      setLoading(false)
-    }
-  }
 
   /**
    * 查询回调
    * @param val
    */
   const search = (val) => {
-    fetchData({
-      ...basePagination,
-      ...formModel.value
-    } as unknown as PolicyParams)
+    setLoadListParams(val)
+    loadList()
   }
-  const onPageChange = (current: number) => {
-    fetchData({ ...basePagination, current })
-  }
-
-  fetchData()
+  loadList()
 </script>
 
 <script lang="ts">

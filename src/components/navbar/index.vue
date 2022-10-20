@@ -142,7 +142,7 @@
               <a-space @click="switchRoles">
                 <icon-tag />
                 <span>
-                  {{ $t("messageBox.switchRoles") }}
+                  {{ $t("navbar.switchRoles") }}
                 </span>
               </a-space>
             </a-doption>
@@ -150,7 +150,7 @@
               <a-space @click="handleLogout">
                 <icon-export />
                 <span>
-                  {{ $t("messageBox.logout") }}
+                  {{ $t("navbar.logout") }}
                 </span>
               </a-space>
             </a-doption>
