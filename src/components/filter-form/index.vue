@@ -1,7 +1,7 @@
 <!--
  * @Description: 筛选项
  * @Date: 2022-09-09 13:52:39
- * @LastEditTime: 2022-10-19 14:20:55
+ * @LastEditTime: 2022-11-08 10:24:27
 -->
 <template>
   <a-form
@@ -22,7 +22,7 @@
           v-model="formInline[item.value]"
           allow-clear
           :style="{ width: formItemWidth.normal }"
-          :placeholder="item.placeholder || '请输入'"
+          :placeholder="inputHolder(item.placeholder)"
         />
       </template>
       <template v-else-if="item.type === 'select'">
@@ -30,20 +30,21 @@
           v-model="formInline[item.value]"
           allow-clear
           :style="{ width: formItemWidth.normal }"
-          :placeholder="item.placeholder || '请选择'"
+          :placeholder="selectHolder(item.placeholder)"
         >
           <a-option
             v-for="it in item.selectOptions"
             :key="item.props ? it[item.props.value] : it.value"
             :value="item.props ? it[item.props.value] : it.value"
           >
-            {{ item.props ? it[item.props.label] : it.label }}
+            {{ item.props ? $t(it[item.props.label]) : $t(it.label) }}
           </a-option>
         </a-select>
       </template>
       <template v-else-if="item.type === 'rangepicker'">
         <a-range-picker
           v-model="formInline[item.value]"
+          v-bind="item"
           :style="{ width: formItemWidth.rangepicker }"
           :show-time="item.showTime === undefined ? true : item.showTime"
           :mode="item.mode === undefined ? 'date' : item.mode"
@@ -64,8 +65,12 @@
       </template>
     </a-form-item>
     <div class="btns">
-      <a-button style="margin-right: 8px" @click="onReset">重置</a-button>
-      <a-button type="primary" @click="onQuery">查询</a-button>
+      <a-button style="margin-right: 8px" @click="onReset">{{
+        $t("filter.reset")
+      }}</a-button>
+      <a-button type="primary" @click="onQuery">{{
+        $t("filter.search")
+      }}</a-button>
     </div>
   </a-form>
 </template>
@@ -73,9 +78,19 @@
 <script lang="ts" setup>
   // @ts-nocheck
 
-  import { defineProps, defineEmits, ref, reactive, watch, PropType } from "vue"
+  import { useI18n } from "vue-i18n"
+  import {
+    defineProps,
+    defineEmits,
+    ref,
+    reactive,
+    watch,
+    PropType,
+    computed
+  } from "vue"
   import { IPropOptions, IForminline, IFormItemWidth } from "./type"
 
+  const { t } = useI18n()
   const $emit = defineEmits(["onQuery"])
   const props = defineProps({
     labelWidth: {
@@ -110,6 +125,18 @@
   // 日期格式化
   const formart = ref("YYYY-MM-DD HH:mm:ss")
 
+  // 输入框 placeholder
+  const inputHolder = computed(() => {
+    return (val) => {
+      return val ? t(val) : t("filter.inputHolder")
+    }
+  })
+  // 下拉框 placeholder
+  const selectHolder = computed(() => {
+    return (val) => {
+      return val ? t(val) : t("filter.selectHolder")
+    }
+  })
   /**
    * 初始化绑定对象
    */

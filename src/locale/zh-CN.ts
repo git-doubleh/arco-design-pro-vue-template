@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Date: 2022-10-10 09:44:00
- * @LastEditTime: 2022-10-20 11:52:36
+ * @LastEditTime: 2022-11-08 10:25:32
  */
 import localeLogin from "@/views/login/locale/zh-CN"
 
@@ -18,6 +18,10 @@ export default {
   "navbar.action.locale": "切换为中文",
   "navbar.switchRoles": "切换角色",
   "navbar.logout": "退出登录",
+  "filter.reset": "清空",
+  "filter.search": "搜索",
+  "filter.inputHolder": "请输入",
+  "filter.selectHolder": "请选择",
   ...localeSettings,
   ...localeLogin,
   /** simple */
